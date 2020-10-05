@@ -57,10 +57,10 @@ box24 = new Box(870, 135, 30, 40);
 
 box25 = new Box(900, -5, 30, 40);
 
-polygon = Bodies.circle(150, 300, 20, options);
+polygon = Bodies.circle(150, 300, 20);
 World.add(world, polygon);
 
-slingshot = new Slingshot(polygon.body, {x:100, y:200});
+slingshot = new Slingshot(this.polygon, {x:100, y:200});
 
 
 
@@ -88,23 +88,28 @@ function draw() {
   box10.display();
   box11.display();
   box12.display();
+  fill("pink");
   box1.display();
   box2.display();
   box3.display();
   box4.display();
   box5.display();
+  fill("green");
   box13.display();
   box14.display();
   box15.display();
   box16.display();
+  fill("red");
   box17.display();
   box18.display();
   box19.display();
   box20.display();
   box21.display();
+  fill("pink");
   box22.display();
   box23.display();
   box24.display();
+  fill("green");
   box25.display();
   slingshot.display();
 
@@ -112,9 +117,15 @@ function draw() {
 }
 
 function mouseDragged() {
-  Matter.Body.setPosition(polygon.body, {x: mouseX, y: mouseY});
+  Matter.Body.setPosition(this.polygon, {x: mouseX, y: mouseY});
 }
 
 function mouseReleased() {
   slingshot.fly();
+}
+
+function keyPressed() {
+  if(keyCode === 32) {
+    slingshot.attach(this.polygon);
+  }
 }
